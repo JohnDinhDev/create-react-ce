@@ -1,0 +1,12 @@
+{
+  "name": "TrackingAni.me",
+  "options_page": "options.html",
+  "background": {
+    "page": "background.html"
+  },
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+  "icons": {},
+  "manifest_version": 2
+}
