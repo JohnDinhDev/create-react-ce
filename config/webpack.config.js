@@ -201,12 +201,14 @@ module.exports = function (webpackEnv) {
           },
     output: {
       // The build folder.
-      path: isEnvProduction ? paths.appBuild : undefined,
+      path: paths.appBuild,
       // Add /* filename */ comments to generated require()s in the output.
       pathinfo: isEnvDevelopment,
       // There will be one main bundle, and one file per asynchronous chunk.
       // In development, it does not produce real files.
-      filename: "static/js/[name].[contenthash:8].js",
+      filename: isEnvProduction
+        ? "static/js/[name].[contenthash:8].js"
+        : isEnvDevelopment && "static/js/[name].bundle.js",
       // There are also additional JS chunk files if you use code splitting.
       chunkFilename: isEnvProduction
         ? "static/js/[name].[contenthash:8].chunk.js"
@@ -302,7 +304,7 @@ module.exports = function (webpackEnv) {
       //// https://twitter.com/wSokra/status/969679223278505985
       //// https://github.com/facebook/create-react-app/issues/5358
       //runtimeChunk: {
-        //name: (entrypoint) => `runtime-${entrypoint.name}`,
+      //name: (entrypoint) => `runtime-${entrypoint.name}`,
       //},
     },
     resolve: {
@@ -342,10 +344,10 @@ module.exports = function (webpackEnv) {
         // To fix this, we prevent you from importing files out of src/ -- if you'd like to,
         // please link the files into your node_modules/ and let module-resolution kick in.
         // Make sure your source files are compiled, as they will not be processed in any way.
-        new ModuleScopePlugin(paths.appSrc, [
-          paths.appPackageJson,
-          reactRefreshOverlayEntry,
-        ]),
+        //new ModuleScopePlugin(paths.appSrc, [
+        //paths.appPackageJson,
+        //reactRefreshOverlayEntry,
+        //]),
       ],
     },
     resolveLoader: {
@@ -661,8 +663,8 @@ module.exports = function (webpackEnv) {
       //// a network request.
       //// https://github.com/facebook/create-react-app/issues/5358
       //isEnvProduction &&
-        //shouldInlineRuntimeChunk &&
-        //new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime-.+[.]js/]),
+      //shouldInlineRuntimeChunk &&
+      //new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime-.+[.]js/]),
       // Makes some environment variables available in index.html.
       // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
       // <link rel="icon" href="%PUBLIC_URL%/favicon.ico">
