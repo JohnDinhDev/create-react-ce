@@ -36,7 +36,7 @@ const appPackageJson = require(paths.appPackageJson);
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== "false";
 
 const webpackDevClientEntry = require.resolve(
-  "react-dev-utils/webpackHotDevClient"
+  "../utils/webpackHotDevClient"
 );
 const reactRefreshOverlayEntry = require.resolve(
   "react-dev-utils/refreshOverlayInterop"
