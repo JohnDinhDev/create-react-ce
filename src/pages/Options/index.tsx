@@ -5,3 +5,6 @@ ReactDOM.render(
   <React.StrictMode>Hello World</React.StrictMode>,
   document.getElementById("root")
 );
+
+// @ts-ignore: Enables hot reload on dev server
+if (module.hot) module.hot.accept();
